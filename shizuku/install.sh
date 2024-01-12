@@ -11,9 +11,8 @@ download() {
 
 # 使用说明
 usage() {
-    echo "Shizuku安装成功!"
     echo "使用方法："
-    echo "rish                  # 进入交互式终端"
+    echo "rish                # 进入交互式终端"
     echo "rish -c "command"     # 可执行单独命令"
     echo "欢迎加入 小贝塔教程资源 QQ群：773276432"
 }
@@ -26,7 +25,7 @@ install() {
     chmod 400 $PREFIX/bin/rish_shizuku.dex
     mv -f rish $PREFIX/bin
     chmod +x $PREFIX/bin/rish
-    which rish && echo "已安装"
+    which rish && echo "Shizuku安装成功!"
 }
 
 # 1. 判断是否是安卓
