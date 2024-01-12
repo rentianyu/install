@@ -38,9 +38,9 @@ uname -a | grep -q Android || (
 cd ~
 if echo $PWD | grep -q termux; then
     PKG=$(echo $PWD | cut -d '/' -f 4)
-    USR=usr/
 elif echo $PWD | grep -q bin.mt.plus; then
     PKG=$(echo $PWD | cut -d '/' -f 5)
+    USR='/usr'
 else
     echo "不是MT管理器、Termux。退出！"
     exit 1
