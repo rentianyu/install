@@ -21,10 +21,10 @@ usage() {
 install() {
     [ -f "rish_shizuku.dex" ] || exit 1
     [ -f "rish" ] || exit 1
-    mv -f rish_shizuku.dex $PREFIX/bin
-    chmod 400 $PREFIX/bin/rish_shizuku.dex
-    mv -f rish $PREFIX/bin
-    chmod +x $PREFIX/bin/rish
+    mv -f rish_shizuku.dex ${PREFIX}${USR}/bin
+    chmod 400 ${PREFIX}${USR}/bin/rish_shizuku.dex
+    mv -f rish ${PREFIX}${USR}/bin
+    chmod +x ${PREFIX}${USR}/bin/rish
     which rish && echo "Shizuku安装成功!"
 }
 
@@ -38,6 +38,7 @@ uname -a | grep -q Android || (
 cd ~
 if echo $PWD | grep -q termux; then
     PKG=$(echo $PWD | cut -d '/' -f 4)
+    USR=usr/
 elif echo $PWD | grep -q bin.mt.plus; then
     PKG=$(echo $PWD | cut -d '/' -f 5)
 else
@@ -46,10 +47,10 @@ else
 fi
 
 # 3. 修改rish里的包名
-sed -i "s/PKG/$PKG/" $PREFIX/bin/rish
+sed -i "s/PKG/$PKG/" ${PREFIX}${USR}/bin/rish
 
 # 4. 安装Shizuku
-if [ -f "$PREFIX/bin/rish" ]; then
+if [ -f "${PREFIX}${USR}/bin/rish" ]; then
     echo "Shizuku已安装,是否重新安装？(y/n): "
     read input
     if [ "$input" = "y" ]; then
