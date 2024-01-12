@@ -6,7 +6,9 @@
 # 下载函数
 download() {
     wget https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/rish_shizuku.dex -O rish_shizuku.dex
+    [ -f "rish_shizuku.dex" ] || (echo "下载失败，退出！" ; exit 1)
     wget https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/rish -O rish
+    [ -f "rish" ] || (echo "下载失败，退出！" ; exit 1)
 }
 
 # 使用说明
@@ -19,8 +21,6 @@ usage() {
 
 # Termux、MT管理器安装函数
 install() {
-    [ -f "rish_shizuku.dex" ] || exit 1
-    [ -f "rish" ] || exit 1
     mv -f rish_shizuku.dex ${PREFIX}${USR}/bin
     chmod 400 ${PREFIX}${USR}/bin/rish_shizuku.dex
     mv -f rish ${PREFIX}${USR}/bin
@@ -54,8 +54,8 @@ if [ -f "${PREFIX}${USR}/bin/rish" ]; then
     echo "Shizuku已安装,是否重新安装？(y/n): "
     read input
     if [ "$input" = "y" ]; then
-        (download && install) && usage || echo "下载失败。退出！"
+        download ; install && usage || echo "安装失败。退出！"
     fi
 else
-    (download && install) && usage || echo "下载失败。退出！"
+    download ; install && usage || echo "安装失败。退出！"
 fi
