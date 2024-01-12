@@ -1,4 +1,7 @@
 #!/bin/sh
+# Termux、MT管理器安装Shizuku
+# 作者：[小贝塔](https://github.com/rentianyu)
+# 最后更新时间：2024.01.12
 
 # 下载函数
 download() {
@@ -8,13 +11,14 @@ download() {
 
 # 使用说明
 usage() {
+    echo "Shizuku安装成功!"
     echo "使用方法："
-    echo "rish              # 进入交互式终端"
+    echo "rish                  # 进入交互式终端"
     echo "rish -c "command"     # 可执行单独命令"
     echo "欢迎加入 小贝塔教程资源 QQ群：773276432"
 }
 
-# termux、MT管理器安装函数
+# Termux、MT管理器安装函数
 install() {
     [ -f "rish_shizuku.dex" ] || exit 1
     [ -f "rish" ] || exit 1
