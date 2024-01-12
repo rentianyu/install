@@ -1,2 +1,4 @@
-# install
-一些安装脚本，和抓取安卓软件界面shell命令的脚本
+# 自用脚本
+
+### 1. [`Shizuku`安装脚本](./shizuku/README.md)
+### 2. [抓取安卓软件界面`Shell`命令相关脚本](./intent/README.md)
