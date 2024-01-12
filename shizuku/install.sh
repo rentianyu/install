@@ -1,6 +1,6 @@
 #!/bin/sh
 # Termux 安装 Shizuku
-# 使用方法：wget https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh && bash install.sh
+# 使用方法：wget https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh && sh install.sh
 # 作者：[小贝塔](https://github.com/rentianyu)
 # 最后更新时间：2024.01.12
 
