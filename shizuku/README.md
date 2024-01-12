@@ -15,6 +15,9 @@
 打开 `Termux`或 `MT管理器`的终端界面，运行以下命令
 
 ```shell
+# termux 请先安装 wget
+apt update -y && apt install -y wget
+# 安装脚本
 sh <(wget -qO- https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh)
 ```
 
