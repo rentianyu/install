@@ -6,6 +6,14 @@ download() {
     wget https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/rish -O rish
 }
 
+# 使用说明
+usage() {
+    echo "使用方法："
+    echo "rish              # 进入交互式终端"
+    echo "rish -c "command"     # 可执行单独命令"
+    echo "欢迎加入 小贝塔教程资源 QQ群：773276432"
+}
+
 # termux、MT管理器安装函数
 install() {
     [ -f "rish_shizuku.dex" ] || exit 1
@@ -41,9 +49,9 @@ sed -i "s/PKG/$PKG/" $PREFIX/bin/rish
 if [ -f "$PREFIX/bin/rish" ]; then
     echo "Shizuku已安装,是否重新安装？(y/n): "
     read input
-    if [ "$input" = "y" ]; then
-        download && install || echo "下载失败。退出！"
+    if [ "$input" == "y" ]; then
+        (download && install) && usage || echo "下载失败。退出！"
     fi
 else
-    download && install || echo "下载失败。退出！"
+    (download && install) && usage || echo "下载失败。退出！"
 fi
