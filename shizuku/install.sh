@@ -53,7 +53,7 @@ sed -i "s/PKG/$PKG/" $PREFIX/bin/rish
 if [ -f "$PREFIX/bin/rish" ]; then
     echo "Shizuku已安装,是否重新安装？(y/n): "
     read input
-    if [ "$input" == "y" ]; then
+    if [ "$input" = "y" ]; then
         (download && install) && usage || echo "下载失败。退出！"
     fi
 else
