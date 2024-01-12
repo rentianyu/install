@@ -33,6 +33,8 @@ if [ -f "$PREFIX/bin/rish" ]; then
     echo "Shizuku已安装,是否重新安装？(y/n): "
     read input
     if [ "$input" = "y" ]; then
+        # 强删 dex
+        rm -rf $PREFIX/bin/rish_shizuku.dex
         install && usage || echo "安装失败。退出！"
     fi
 else
