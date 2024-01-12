@@ -15,7 +15,7 @@
 打开 `Termux`或 `MT管理器`的终端界面，运行以下命令
 
 ```shell
-curl -sL https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh | sh
+sh <(wget -qO- https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh)
 ```
 
 安装完毕后，`rish` 命令进入交互式终端，`rish -c "命令"` 可执行单独命令

@@ -10,9 +10,9 @@ download() {
 install() {
     [ -f "rish_shizuku.dex" ] || exit 1
     [ -f "rish" ] || exit 1
-    mv rish_shizuku.dex $PREFIX/bin
+    mv -f rish_shizuku.dex $PREFIX/bin
     chmod 400 $PREFIX/bin/rish_shizuku.dex
-    mv rish $PREFIX/bin
+    mv -f rish $PREFIX/bin
     chmod +x $PREFIX/bin/rish
     which rish && echo "已安装"
 }
