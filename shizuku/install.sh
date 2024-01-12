@@ -35,7 +35,7 @@ else
 fi
 
 # 3. 修改rish里的包名
-sed -i "s/PKG/${PKG}//" $PREFIX/bin/rish
+sed -i "s/PKG/${PKG}/" $PREFIX/bin/rish
 
 # 4. 安装Shizuku
 if [ -f "$PREFIX/bin/rish" ]; then
