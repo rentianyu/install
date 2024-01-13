@@ -11,26 +11,19 @@ install() {
     # 下载 rish
     curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/rish >$DIR/rish
     # 修改rish里的包名
-    sed -i "s/PKG/com.termux/" $DIR/rish
-    # MT 特殊处理
-    echo "$PKG" | grep -q bin.mt.plus && {
-        mv $DIR/rish $DIR/rish.sh
-        echo '#!/system/bin/sh
-        sh '$DIR'/rish.sh "$@"' >$DIR/rish
-    }
+    sed -i "s/PKG/$PKG/" $DIR/rish
     # 赋予执行权限
     chmod +x $DIR/rish
     # 判断安装成功
-    export PATH=$PATH:$(pwd)/bin
-
-    which rish && echo "Shizuku 安装成功!" || echo "安装失败。退出！"
+    [ -f "$DIR/rish" -a -f "$DIR/rish_shizuku.dex" ] && echo -e "\n\n\nShizuku 安装成功!" || echo "安装失败。退出！"
 }
 
 # 使用说明
 usage() {
-    echo "rish - 使用方法："
-    echo "rish                # 进入交互式终端"
-    echo 'rish -c "command"     # 可执行单独命令'
+    [ $PKG = bin.mt.* ] && MT='sh ~/'
+    echo -e "\nrish - 使用方法："
+    echo -e "${MT}MTrish                # 进入交互式终端"
+    echo -e "${MT}rish -c \"command\"     # 可执行单独命令"
     echo "欢迎加入 小贝塔教程资源 QQ群：773276432"
 }
 
@@ -39,15 +32,9 @@ cd ~
 if pwd | grep com.termux; then
     DIR=$PREFIX/bin
     PKG=com.termux
-
 elif pwd | grep bin.mt.plus; then
-    mkdir -p bin
-    DIR=$HOME/bin
+    DIR=$HOME
     PKG=$(pwd | cut -d '/' -f 5)
-    [ -f .bashrc ] && {
-        grep "$(pwd)/bin" .bashrc || echo "export PATH=$PATH:$(pwd)/bin" >>.bashrc
-    } ||
-        echo "export PATH=$PATH:$(pwd)/bin" >>.bashrc
 else
     echo "当前不是Termux环境，退出!"
     exit 1
