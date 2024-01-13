@@ -1,20 +1,28 @@
 #!/bin/sh
-# Termux 安装 Shizuku
-# 使用方法：sh <(curl -s https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh)
+# Termux、MT管理器安装 Shizuku
+# 使用方法：sh <(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/install.sh)
 # 作者：[小贝塔](https://github.com/rentianyu)
 # 最后更新时间：2024.01.13
 
 # Termux 安装函数
 install() {
     # 下载 dex
-    curl -s https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/rish_shizuku.dex >$DIR/rish_shizuku.dex
+    curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/rish_shizuku.dex >$DIR/rish_shizuku.dex
     # 下载 rish
-    curl -s https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/rish >$DIR/rish
+    curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/rish >$DIR/rish
     # 修改rish里的包名
     sed -i "s/PKG/com.termux/" $DIR/rish
+    # MT 特殊处理
+    echo "$PKG" | grep -q bin.mt.plus && {
+        mv $DIR/rish $DIR/rish.sh
+        echo '#!/system/bin/sh
+        sh '$DIR'/rish.sh "$@"' >$DIR/rish
+    }
     # 赋予执行权限
     chmod +x $DIR/rish
     # 判断安装成功
+    export PATH=$PATH:$(pwd)/bin
+
     which rish && echo "Shizuku 安装成功!" || echo "安装失败。退出！"
 }
 
@@ -33,9 +41,6 @@ if pwd | grep com.termux; then
     PKG=com.termux
 
 elif pwd | grep bin.mt.plus; then
-    echo "期待MT管理器支持！"
-    echo "当前不是Termux环境，退出!"
-    exit 1
     mkdir -p bin
     DIR=$HOME/bin
     PKG=$(pwd | cut -d '/' -f 5)
@@ -54,8 +59,7 @@ if [ -f "$DIR/rish" -a -f "$DIR/rish_shizuku.dex" ]; then
     read input
     if [ "$input" = "y" ]; then
         # 强删 rish dex
-        rm -rf $DIR/rish
-        rm -rf $DIR/rish_shizuku.dex
+        rm -rf $DIR/rish*
         install && usage
     fi
 else

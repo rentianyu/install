@@ -16,10 +16,10 @@
 - 打开 `Termux`，运行以下命令
 
 ```shell
-# termux 请先安装 wget
-apt update -y && apt install -y wget
+# termux 请先安装 curl
+apt update -y && apt install -y curl
 # 安装脚本
-sh <(wget -qO- https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/install.sh)
+sh <(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/install.sh)
 ```
 
 - 安装完毕后，`rish`命令进入交互式终端，`rish -c "命令"`可执行单独命令
@@ -27,9 +27,9 @@ sh <(wget -qO- https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/instal
 ## 3.2 `FV悬浮球`安装 `Shizuku`
 
 - `FV悬浮球`的任务分享平台搜索 `[β] 运行Shizuku命令(兼安装)`，安装并运行
-- 或 下载 [FV-Shizuku.fvt](https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/FV-Shizuku.fvt)，导入 `FV悬浮球`运行
+- 或 下载 [FV-Shizuku.fvt](https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/FV-Shizuku.fvt)，导入 `FV悬浮球`运行
 
 ## 3.3 `MacDriod`安装 `Shizuku`
 
-- 下载 [MacDriod-Shizuku-install.macro](https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/MacDriod-Shizuku-install.macro)，导入宏，按提示运行安装
-- 导入调用动作块：[MacDriod-Shizuku-run.ablock](https://cdn.jsdelivr.net/gh/rentianyu/install@main/shizuku/MacDriod-Shizuku-run.ablock)
+- 下载 [MacDriod-Shizuku-install.macro](https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/MacDriod-Shizuku-install.macro)，导入宏，按提示运行安装
+- 导入调用动作块：[MacDriod-Shizuku-run.ablock](https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/MacDriod-Shizuku-run.ablock)
