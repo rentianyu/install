@@ -20,9 +20,9 @@ install() {
 
 # 使用说明
 usage() {
-    [ $PKG = bin.mt.* ] && MT='sh ~/'
+    echo $PKG | grep -q bin.mt.plus && MT='sh ~/'
     echo -e "\nrish - 使用方法："
-    echo -e "${MT}MTrish                # 进入交互式终端"
+    echo -e "${MT}rish                # 进入交互式终端"
     echo -e "${MT}rish -c \"command\"     # 可执行单独命令"
     echo "欢迎加入 小贝塔教程资源 QQ群：773276432"
 }
