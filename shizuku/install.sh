@@ -33,6 +33,9 @@ if pwd | grep com.termux; then
     PKG=com.termux
 
 elif pwd | grep bin.mt.plus; then
+    echo "期待MT管理器支持！"
+    echo "当前不是Termux环境，退出!"
+    return 0
     mkdir -p bin
     DIR=$HOME/bin
     PKG=$(pwd | cut -d '/' -f 5)
@@ -41,10 +44,9 @@ elif pwd | grep bin.mt.plus; then
     } ||
         echo "export PATH=$PATH:$(pwd)/bin" >>.bashrc
 else
-    echo "当前不是Termux、MT管理器环境，退出!"
+    echo "当前不是Termux环境，退出!"
     exit 1
 fi
-
 
 # 安装 Shizuku
 if [ -f "$DIR/rish" -a -f "$DIR/rish_shizuku.dex" ]; then
