@@ -35,7 +35,8 @@ if pwd | grep com.termux; then
 elif pwd | grep bin.mt.plus; then
     echo "期待MT管理器支持！"
     echo "当前不是Termux环境，退出!"
-    return 0
+    echo "当前不是Termux环境，退出!"
+    exit 1
     mkdir -p bin
     DIR=$HOME/bin
     PKG=$(pwd | cut -d '/' -f 5)
