@@ -28,7 +28,7 @@ usage() {
 }
 
 # 判断当前软件
-cd ~
+cd ~ || exit
 if pwd | grep com.termux; then
     DIR=$PREFIX/bin
     PKG=com.termux
@@ -36,7 +36,7 @@ elif pwd | grep bin.mt.plus; then
     DIR=$HOME
     PKG=$(pwd | cut -d '/' -f 5)
 else
-    echo "当前不是Termux环境，退出!"
+    echo "当前不是Termux或MT管理器环境，退出!"
     exit 1
 fi
 
