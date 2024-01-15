@@ -57,7 +57,7 @@ main() {
         sed 's/S\.\(\w\+\=false;\)/B.\1/g' |                                       # .B 布尔值数据  # --ez
         sed '/extras=null/d' |                                                     # intent 数据 URI
         sed "/ \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
-    [ -s "$1" ] && echo "处理成功" || echo "处理失败！处理失败！处理失败！"
+    [ -s "$OUT" ] && echo "处理成功" || echo "处理失败！处理失败！处理失败！"
 }
 
 # 判断是否是termux
