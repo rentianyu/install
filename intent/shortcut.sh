@@ -38,25 +38,44 @@ install_shizuku() {
 main() {
     echo $OUT
     grep -e "Package:.*UID" -e longLabel -e intents -e extras "$1" |               # 截取包名、卡片名称、主启动参数、附加启动参数
-        sed 's/.*Package:/\n# 软件包名:/g' |                                           # 包名
-        sed "s/.*longLabel=/# /g;s/, resId.*//g" |                                 # 卡片名称
-        sed "s/.*Intent { /am start --user 0 \'intent:#Intent/g; s/ }\/null]//g" | # 启动头
-        sed 's/act=/;action=/g' |                                                  # intent 操作  # -a
-        sed 's/ dat=/;/g' |                                                        # intent 数据 URI  # -d
-        sed 's/ cmp=/;component=/g' |                                              # 带有软件包名称前缀的组件名称  # -n
-        sed 's/ flg=/;launchFlags=/g' |                                            # 标记 # -f
-        sed 's/ cat=\[/category=/g' |                                              # intent 类别  # -c
-        sed 's/\]//g' |                                                            # 删除]
-        sed 's/ pkg=/;package=/g' |                                                # 包名
-        sed 's/}$//g' |                                                            # 删除结尾}，对应启动头删除{
-        sed "s/.*'.*/\0;end'/g" |                                                  # 结尾标记
-        sed 's/ }\/PersistableBundle\[{/;S./g' |                                   # 参数第一个变 .S  # -e
-        sed 's/, /;S./g' |                                                         # 剩余参数变 .S 字符串
-        sed 's/S\.\(\w\+\=[0-9]\{1,3\};\)/i.\1/g' |                                # .i 整数型数据  # --ei
-        sed 's/S\.\(\w\+\=true;\)/B.\1/g' |                                        # .B 布尔值数据  # --ez
-        sed 's/S\.\(\w\+\=false;\)/B.\1/g' |                                       # .B 布尔值数据  # --ez
-        sed '/extras=null/d' |                                                     # intent 数据 URI
-        sed "/ \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
+        sed "s/.*Package:/\n# 软件包名:/g
+        s/.*longLabel=/# /g;s/, resId.*//g
+        s/.*Intent { /am start --user 0 \'intent:#Intent/g; s/ }\/null]//g
+        s/act=/;action=/g
+        s/ dat=/;/g
+        s/ cmp=/;component=/g
+        s/ flg=/;launchFlags=/g
+        s/ cat=\[/category=/g
+        s/\]//g
+        s/ pkg=/;package=/g
+        s/}$//g
+        s/.*'.*/\0;end'/g
+        s/ }\/PersistableBundle\[{/;S./g
+        s/, /;S./g
+        s/S\.\(\w\+\=[0-9]\{1,3\};\)/i.\1/g
+        s/S\.\(\w\+\=true;\)/B.\1/g
+        s/S\.\(\w\+\=false;\)/B.\1/g
+        /extras=null/d
+        / \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
+        # sed 's/.*Package:/\n# 软件包名:/g
+        # sed "s/.*longLabel=/# /g;s/, resId.*//g" |                                 # 卡片名称
+        # sed "s/.*Intent { /am start --user 0 \'intent:#Intent/g; s/ }\/null]//g" | # 启动头
+        # sed 's/act=/;action=/g' |                                                  # intent 操作  # -a
+        # sed 's/ dat=/;/g' |                                                        # intent 数据 URI  # -d
+        # sed 's/ cmp=/;component=/g' |                                              # 带有软件包名称前缀的组件名称  # -n
+        # sed 's/ flg=/;launchFlags=/g' |                                            # 标记 # -f
+        # sed 's/ cat=\[/category=/g' |                                              # intent 类别  # -c
+        # sed 's/\]//g' |                                                            # 删除]
+        # sed 's/ pkg=/;package=/g' |                                                # 包名
+        # sed 's/}$//g' |                                                            # 删除结尾}，对应启动头删除{
+        # sed "s/.*'.*/\0;end'/g" |                                                  # 结尾标记
+        # sed 's/ }\/PersistableBundle\[{/;S./g' |                                   # 参数第一个变 .S  # -e
+        # sed 's/, /;S./g' |                                                         # 剩余参数变 .S 字符串
+        # sed 's/S\.\(\w\+\=[0-9]\{1,3\};\)/i.\1/g' |                                # .i 整数型数据  # --ei
+        # sed 's/S\.\(\w\+\=true;\)/B.\1/g' |                                        # .B 布尔值数据  # --ez
+        # sed 's/S\.\(\w\+\=false;\)/B.\1/g' |                                       # .B 布尔值数据  # --ez
+        # sed '/extras=null/d' |                                                     # intent 数据 URI
+        # sed "/ \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
     [ -s "$OUT" ] && echo "处理成功" || echo "处理失败！处理失败！处理失败！"
 }
 
