@@ -17,7 +17,8 @@ $OUT
 }
 
 # 一些变量
-XBT="/storage/emulated/0/A-小贝塔"
+XBT="/sdcard/A-小贝塔"
+# XBT="/storage/emulated/0/A-小贝塔"
 IN="$XBT/shortcuts.txt"
 OUT="$XBT/shortcuts.sh"
 
