@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 brief_introduction() {
+    # shellcheck disable=SC2016
     echo '简介：
 # 抓取桌面shortcut的shell命令
 # 使用方法：bash -c "$(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/intent/shortcut.sh)""
