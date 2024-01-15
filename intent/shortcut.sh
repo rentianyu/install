@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 brief_introduction() {
     # shellcheck disable=SC2016
-    echo '简介：
+    echo -e '简介：
 # 抓取桌面shortcut的shell命令
 # 使用方法：bash -c "$(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/intent/shortcut.sh)""
 # 作者：[小贝塔](https://github.com/rentianyu)
@@ -36,6 +36,7 @@ install_shizuku() {
 
 # 生成 Shortcut 的 Shell 命令
 main() {
+    echo $OUT
     grep -e "Package:.*UID" -e longLabel -e intents -e extras "$1" |               # 截取包名、卡片名称、主启动参数、附加启动参数
         sed 's/.*Package:/\n# 软件包名:/g' |                                           # 包名
         sed "s/.*longLabel=/# /g;s/, resId.*//g" |                                 # 卡片名称
@@ -56,7 +57,7 @@ main() {
         sed 's/S\.\(\w\+\=false;\)/B.\1/g' |                                       # .B 布尔值数据  # --ez
         sed '/extras=null/d' |                                                     # intent 数据 URI
         sed "/ \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
-        [ -s "$1" ] && echo "处理成功" || echo "处理失败！处理失败！处理失败！"
+    [ -s "$1" ] && echo "处理成功" || echo "处理失败！处理失败！处理失败！"
 }
 
 # 判断是否是termux
