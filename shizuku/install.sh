@@ -26,28 +26,31 @@ install() {
     [ -f "$1/rish" ] && [ -f "$1/rish_shizuku.dex" ] && printf "\n\n\nShizuku 安装成功!" || echo "安装失败。退出！"
 }
 
-
 # 打印简介
 brief_introduction
 
-# 判断当前软件
-if [ "$PREFIX" != "*termux*" ]; then
-    echo "请在 Termux 环境下运行脚本!"
-    exit 1
-fi
+main() {
+    # 安装路径
+    DIR="$PREFIX/bin"
 
-# 安装路径
-DIR="$PREFIX/bin"
-
-# 安装 Shizuku
-if [ -f "$DIR/rish" ] && [ -f "$DIR/rish_shizuku.dex" ]; then
-    echo "Shizuku已安装,是否重新安装？(y/n): "
-    read -r input
-    if [ "$input" = "y" ]; then
-        # 强删 rish dex
-        rm -rf "$DIR/rish*"
+    # 安装 Shizuku
+    if [ -f "$DIR/rish" ] && [ -f "$DIR/rish_shizuku.dex" ]; then
+        echo "Shizuku已安装,是否重新安装？(y/n): "
+        read -r input
+        if [ "$input" = "y" ]; then
+            # 强删 rish dex
+            rm -rf "$DIR/rish*"
+            install "$DIR" && usage
+        fi
+    else
         install "$DIR" && usage
     fi
+}
+
+# 判断当前软件
+if echo "$PREFIX" | grep -q termux; then
+    main
 else
-    install "$DIR" && usage
+    echo "请在 Termux 环境下运行脚本!"
+    exit 1
 fi
