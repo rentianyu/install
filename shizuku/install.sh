@@ -23,7 +23,7 @@ install() {
     # 赋予执行权限
     chmod +x "$1/rish"
     # 判断安装成功
-    [ -f "$1/rish" ] && [ -f "$1/rish_shizuku.dex" ] && printf "\n\n\nShizuku 安装成功!" || echo "安装失败。退出！"
+    [ -f "$1/rish" ] && [ -f "$1/rish_shizuku.dex" ] && printf "\n\n\nShizuku 安装成功!\n 请输入 rish 授权运行 shizuku 命令。\n\n\n" || echo "安装失败。退出！"
 }
 
 # 打印简介
@@ -40,10 +40,10 @@ main() {
         if [ "$input" = "y" ]; then
             # 强删 rish dex
             rm -rf "$DIR/rish*"
-            install "$DIR" && usage
+            install "$DIR"
         fi
     else
-        install "$DIR" && usage
+        install "$DIR"
     fi
 }
 
