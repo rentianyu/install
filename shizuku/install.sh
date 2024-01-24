@@ -1,12 +1,15 @@
 #!/usr/bin/bash
 brief_introduction() {
     # shellcheck disable=SC2016
-    echo '简介：
-# Termux 安装 Shizuku
+    echo '
+
+# 脚本用途：Termux 安装 Shizuku
 # 使用方法：bash -c "$(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/install.sh)""
-# 作者：[小贝塔](https://github.com/rentianyu)
-# 最后更新时间：2024.01.13
-# QQ群：773276432'
+# 项目地址：[小贝塔](https://github.com/rentianyu/install)
+# 最后更新：2024.01.24
+# QQ群：773276432
+
+'
 }
 
 # Termux 安装函数
@@ -33,7 +36,7 @@ usage() {
 }
 
 # 打印简介
-brief_introduction() {
+brief_introduction
 
 # 判断当前软件
 cd ~ || exit

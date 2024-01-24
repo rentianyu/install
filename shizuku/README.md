@@ -19,7 +19,7 @@
 # termux 请先安装 curl
 apt update -y && apt install -y curl
 # 安装脚本
-sh <(curl -s https://github.moeyy.xyz/https://raw.githubusercontent.com/rentianyu/install/main/shizuku/install.sh)
+bash -c "$(curl -s https://raw.githubusercontent.com/rentianyu/install/main/shizuku/install.sh)"
 ```
 
 - 安装完毕后，`rish`命令进入交互式终端，`rish -c "命令"`可执行单独命令
