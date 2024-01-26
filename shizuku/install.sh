@@ -11,7 +11,7 @@ brief_introduction() {
 
 '
 }
-
+PKG=com.termux
 # Termux 安装函数
 install() {
     # 下载 dex

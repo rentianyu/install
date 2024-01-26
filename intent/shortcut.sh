@@ -1,7 +1,7 @@
 #!/system/bin/sh
 brief_introduction() {
-# shellcheck disable=SC2016
-echo '
+    # shellcheck disable=SC2016
+    echo '
 
 # 脚本用途：提取抓取桌面 Shortcut 的 Shell 命令
 # 使用方法：dumpsys shortcut >/sdcard/shortcuts.txt && bash -c "$(curl -s https://raw.githubusercontent.com/rentianyu/install/main/intent/shortcut.sh)"
@@ -18,7 +18,7 @@ OUT=/sdcard/shortcut_out.sh
 
 # 处理函数
 main() {
-    grep -e "Package:.*UID" -e longLabel -e intents -e extras "$1" |                 # 截取包名、卡片名称、主启动参数、附加启动参数
+    grep -e "Package:.*UID" -e longLabel -e intents -e extras "$1" |               # 截取包名、卡片名称、主启动参数、附加启动参数
         sed 's/.*Package:/\n# 软件包名:/g' |                                           # 包名
         sed "s/.*longLabel=/# /g;s/, resId.*//g" |                                 # 卡片名称
         sed "s/.*Intent { /am start --user 0 \'intent:#Intent/g; s/ }\/null]//g" | # 启动头
@@ -39,10 +39,12 @@ main() {
         sed '/extras=null/d' |                                                     # intent 数据 URI
         sed "/ \+extras/s/;.*/'/g;/ \+extras/s/.*{\w\+\=/am start -d '/g" >$OUT    # intent 数据 URI
     sed -i '1iecho "说了不让你运行，你还运行，你得谢谢我！";exit 1' $OUT                              # 警示并退出函数
+    # shellcheck disable=SC2059
     printf "输出文件：$OUT\n输出文件：$OUT\n输出文件：$OUT"
 }
 
 usage() {
+    # shellcheck disable=SC2016
     echo '
 1. root 用户
 
